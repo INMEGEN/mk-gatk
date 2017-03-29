@@ -1,0 +1,27 @@
+<config.mk
+
+results/%.ir.rtc.bam:E:	data/%.bam results/%.intervals coord.bed
+	set -x
+	java -jar $GATK \
+		-T IndelRealigner \
+		-R $REF \
+		-L coord.bed \
+		-I "data/"$stem".bam" \
+		-targetIntervals "results/"$stem".intervals" \
+		-known $VARIANTS \
+		-o $target".build" \
+	&& mv $target".build" $target \
+	&& mv $target".build.bai" $target".bai"
+
+results/%.intervals:E: data/%.bam coord.bed
+	set -x
+	java -jar $GATK \
+		-T RealignerTargetCreator \
+		-R $REF \
+		-L coord.bed \
+		-I "data/"$stem".bam" \
+		-o $target".build" \
+		-nt $NT \
+		-known $VARIANTS \
+	&& mv $target".build" $target
+

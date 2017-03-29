@@ -1,28 +1,17 @@
-Pipeline de 100 genomas
-bam:
+Pipeline for GATK short variant calling in the 100GMX project
+
 	
-Pipeline \
-	XX: 
-		mkfile:  este hace todo
-		data/
-			ln -s al results paso anterior y a su defecto al bam
-		results/
-			los de esta etapa finales, no se borra
-			001, 002,003
-				pasos intermedios o archivos intermedios
-		bin/
-			YYYY.sh 
-			targets.sh
+Folder structure:
+
+	001: Indel realigment step 
+		results/	BAM realigned from this step
 
 
+	002: BQSR (Base quality score recalibration) step
+		results/	BAM recalled from this step
 
-	001: Proceso de bla bla.
-
-
-
-	002: Proceso de bla bla.
+	003: Variant calling step
+		results/	gVCFs files generated, those are not recalled
 	
 
 	.git
-
-

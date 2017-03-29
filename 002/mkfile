@@ -1,0 +1,54 @@
+<config.mk
+
+prueba1:VE:
+	./targets | xargs mk
+
+results/%.recall-tab1:E:	data/%.bam coord.bed
+	set -x
+	java -jar $GATK \
+	-T BaseRecalibrator \
+        -L coord.bed \
+	-I data/%.bam \
+        -knownSites $VARIANTS \
+        -nct $NT \
+        -o $target".build" \
+  	&& mv $target".build" $target 
+
+
+results/%.recal1.bam:E: data/%.bam results/%.recall-tab1 coord.bed
+	set -x
+	java -jar $GATK \
+		-T PrintReads \
+		-R $REF \
+		-L coord.bed \
+		-I "data/"$stem".bam" \
+		-o $target".build" \
+		-nt $NT \
+		-known $VARIANTS \
+	&& mv $target".build" $target
+
+
+results/%.recall-tab2:E:        result/%.recal1.bam coord.bed
+        set -x
+        java -jar $GATK \
+        -T BaseRecalibrator \
+        -L coord.bed \
+        -I result/%.recal1.bam \
+        -knownSites $VARIANTS \
+        -nct $NT \
+        -o $target".build" \
+        && mv $target".build" $target
+
+
+results/%.recal2.bam:E: result/%.recal1.bam results/%.recall-tab2 coord.bed
+        set -x
+        java -jar $GATK \
+                -T PrintReads \
+                -R $REF \
+                -L coord.bed \
+                -I "data/%.recal1.bam \
+                -o $target".build" \
+                -nt $NT \
+                -known $VARIANTS \
+        && mv $target".build" $target
+
