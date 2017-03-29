@@ -1,2 +1,4 @@
 *.swo
 *.swp
+*/results
+*/data
