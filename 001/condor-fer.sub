@@ -1,7 +1,0 @@
-executable = /usr/bin/time
-arguments = date
-output = results/SM-3MG54.final.ir.rtc.bam.condor_out
-log = results/SM-3MG54.final.ir.rtc.bam.condor_log
-error = results/SM-3MG54.final.ir.rtc.bam.condor_err
-queue
-
