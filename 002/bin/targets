@@ -1,0 +1,8 @@
+#!/bin/sh
+#echo "results/SM-3MG3L.final.ir.rtc.bam"
+find -L data/ \
+        -name '*.bam'\
+| sed \
+	-e "s/data/results/g" \
+	-e "s/\.final\.ir\.rtc\./.recal2./"
+
