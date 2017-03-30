@@ -11,4 +11,4 @@ REF="/100g/references/human-reference/v37_decoy/human_g1k_v37_decoy.fasta"
 VARIANTS="/100g/references/reference_variants-gatk/1000G_phase1.indels.b37.vcf"
 
 #Number of threads
-NT="4"
+NT="1"
