@@ -24,7 +24,7 @@ results/%.recal1.bam:E: data/%.final.ir.rtc.bam results/%.recal-tab1 coord.bed
 		-L coord.bed \
 		-I "data/"$stem".final.ir.rtc.bam" \
 		-o $target".build" \
-                -BQSR "results/"$stem".recall-tab1" \
+                -BQSR "results/"$stem".recal-tab1" \
 		-nct $NT \
 	&& mv $target".build" $target \
         && mv $target".build.bai" $target".bai"
@@ -53,7 +53,7 @@ results/%.recal2.bam:E: results/%.recal1.bam results/%.recal-tab2 coord.bed
                 -I "results/"$stem".recal1.bam" \
                 -o $target".build" \
                 -nct $NT \
-                -BQSR "results/"$stem".recall-tab2" \
+                -BQSR "results/"$stem".recal-tab2" \
         && mv $target".build" $target \
         && mv $target".build.bai" $target".bai"
 
