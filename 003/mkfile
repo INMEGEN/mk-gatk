@@ -1,7 +1,7 @@
 <config.mk
 
 prueba1:VE:
-	./targets | xargs mk
+	./bin/targets | xargs mk
 
 results/%.vcf:E:	data/%.recal2.bam coord.bed
 	set -x
@@ -9,11 +9,11 @@ results/%.vcf:E:	data/%.recal2.bam coord.bed
 		-T HaplotypeCaller \
 		-R $REF \
 		-L coord.bed \
-		-I data/%.recal2.bam \
+		-I "data/"$stem".recal2.bam" \
 		--minPruning 3 \
 		--emitRefConfidence GVCF \
                 --variant_index_type LINEAR \
                 --variant_index_parameter 128000 \
                 -nct $NT \
 		-o $target".build" \
-	&& mv $target".build.bai" $target".bai"
+	&& mv $target".build" $target

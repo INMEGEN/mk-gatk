@@ -1,54 +1,59 @@
 <config.mk
 
 prueba1:VE:
-	./targets | xargs mk
+	./bin/targets | xargs mk
 
-results/%.recall-tab1:E:	data/%.bam coord.bed
+results/%.recal-tab1:E:	data/%.final.ir.rtc.bam coord.bed
 	set -x
 	java -jar $GATK \
 	-T BaseRecalibrator \
+        -R $REF \
         -L coord.bed \
-	-I data/%.bam \
+	-I "data/"$stem".final.ir.rtc.bam" \
         -knownSites $VARIANTS \
         -nct $NT \
         -o $target".build" \
   	&& mv $target".build" $target 
 
 
-results/%.recal1.bam:E: data/%.bam results/%.recall-tab1 coord.bed
+results/%.recal1.bam:E: data/%.final.ir.rtc.bam results/%.recal-tab1 coord.bed
 	set -x
 	java -jar $GATK \
 		-T PrintReads \
 		-R $REF \
 		-L coord.bed \
-		-I "data/"$stem".bam" \
+		-I "data/"$stem".final.ir.rtc.bam" \
 		-o $target".build" \
-		-nt $NT \
-		-known $VARIANTS \
-	&& mv $target".build" $target
+                -BQSR "results/"$stem".recal-tab1" \
+		-nct $NT \
+	&& mv $target".build" $target \
+        && mv $target".build.bai" $target".bai"
 
 
-results/%.recall-tab2:E:        result/%.recal1.bam coord.bed
+results/%.recal-tab2:E:        results/%.recal1.bam coord.bed
         set -x
         java -jar $GATK \
         -T BaseRecalibrator \
+        -R $REF \
         -L coord.bed \
-        -I result/%.recal1.bam \
+        -I "results/"$stem".recal1.bam" \
         -knownSites $VARIANTS \
         -nct $NT \
         -o $target".build" \
         && mv $target".build" $target
 
 
-results/%.recal2.bam:E: result/%.recal1.bam results/%.recall-tab2 coord.bed
+results/%.recal2.bam:E: results/%.recal1.bam results/%.recal-tab2 coord.bed
         set -x
+	mkdir -p `dirname $target`
         java -jar $GATK \
                 -T PrintReads \
                 -R $REF \
                 -L coord.bed \
-                -I "data/%.recal1.bam \
+                -I "results/"$stem".recal1.bam" \
                 -o $target".build" \
-                -nt $NT \
-                -known $VARIANTS \
-        && mv $target".build" $target
+                -nct $NT \
+                -BQSR "results/"$stem".recal-tab2" \
+        && mv $target".build" $target \
+        && mv $target".build.bai" $target".bai"
 
