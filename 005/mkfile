@@ -1,0 +1,79 @@
+aconfig.mk
+
+prueba1:VE:
+	./bin/targets | xargs mk
+
+
+#Recalibrating SNP
+
+results/%_snp.recal:E:        data/%.vcf
+        java -jar $GATK \
+		-T VariantRecalibrator \
+		-R $REF \
+		-input $INPUT \
+		-mode SNP \
+		-recalFile $target".build" \
+		-tranchesFile "results/"$stem"_snp.tranches.build" \
+		-rscriptFile "results/"$stem"-recalibrate_SNP_plots.R.build" \
+		-nt $2 \
+		-resource:hapmap,known=false,training=true,truth=true,prior=15.0 $REF/hapmap_3.3.b37.vcf \
+		-resource:omni,known=false,training=true,truth=true,prior=12.0 $REF/1000G_omni2.5.b37.vcf \
+		-resource:1000G,known=true,training=true,truth=true,prior=10.0 $REF/Mills_and_1000G_gold_standard.indels.b37.vcf \
+		-resource:dbsnp,known=true,training=false,truth=false,prior=2.0 $REF/dbsnp_138.b37.vcf \
+		-an DP -an QD -an FS -an SOR -an MQ \
+                -an MQRankSum -an ReadPosRankSum -an InbreedingCoeff \
+	        && mv $target".build" $target \
+		&& mv "results/"$stem"_snp.tranches.build" "results/"$stem"_snp.tranches.build" \
+                && mv "results/"$stem"-recalibrate_SNP_plots.R.build" "results/"$stem"-recalibrate_SNP_plots.R" 
+
+
+#Apply the recalibration in VCF file
+
+results/%_snp_recaled.vcf:E:       results/%_snp.recal results/%_snp.tranches data/%.vcf
+        java -jar $GATK \
+		-T ApplyRecalibration \
+		-R $REF \
+		-input "data/"$stem".vcf" \
+		-mode SNP \
+		-recalFile "results/"$stem"_snp.recal" \
+		-nt $2 \
+		-tranchesFile "results/"$stem"_snp.tranches" \
+		-o $target".build" \
+		-ts_filter_level 99.0 \
+                && mv $target".build" $target 
+
+
+#Recalibrating INDEL
+
+results/%_indel.recal:E:        results/%_snp_recaled.vcf
+	java -jar $GATK \
+		-T VariantRecalibrator \
+		-R $REF \
+		-input $target".build" \
+		-mode INDEL \
+		-recalFile "results/"$stem"_snp_recaled.vcf \
+                -tranchesFile "results/"$stem"_indel.tranches.build" \
+                -rscriptFile "results/"$stem"-recalibrate_INDEL_plots.R.build" \
+		-nt $2 \
+		-resource:mills,known=false,training=true,truth=true,prior=12.0 $REF/Mills_and_1000G_gold_standard.indels.b37.vcf \
+		-an DP \
+		-an QD \
+		-an FS \
+		-an SOR \
+		-an MQRankSum \
+		-an ReadPosRankSum \
+		-an InbreedingCoeff \
+
+
+#Apply recalibration in INDELS
+        java -jar $GATK \
+		-T ApplyRecalibration \
+		-R $REF \
+		-input ${INNAME}_recaled_snp.vcf \
+		-mode INDEL \
+		-recalFile ${INNAME}_recaled_snp_indel.recal \
+		-nt $2 \
+		-tranchesFile ${INNAME}_recaled_snp_indel.trash \
+		-o ${INNAME}_recaled_snp-indel.vcf \
+		-ts_filter_level 99.0 \
+
