@@ -18,4 +18,4 @@ Folder structure:
 		results/	gVCFs files generated, those are not recalled
 	
 
-	.git
+	004:
