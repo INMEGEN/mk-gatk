@@ -11,4 +11,4 @@ REF="/reference/ftp.broadinstitute.org/bundle/hg38/Homo_sapiens_assembly38.fasta
 VARIANTS="/reference/ftp.broadinstitute.org/bundle/hg38/1000G_phase1.snps.high_confidence.hg38.vcf.gz"
 
 #Number of threads
-NT="6"
+NT="4"
