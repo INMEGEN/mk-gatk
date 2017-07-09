@@ -5,10 +5,10 @@ PATH=/castle/cfresno/.bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbi
 GATK="/usr/share/java/GenomeAnalysisTK3.7.jar"
 
 #Directorio del genoma de referencia
-REF="/100g/references/human-reference/v37_decoy/human_g1k_v37_decoy.fasta"
+REF="/reference/ftp.broadinstitute.org/bundle/hg38/Homo_sapiens_assembly38.fasta"
 
 #Directorio con variantes de confianza
-VARIANTS="/100g/references/reference_variants-gatk/1000G_phase1.indels.b37.vcf"
+VARIANTS="/reference/ftp.broadinstitute.org/bundle/hg38/1000G_phase1.snps.high_confidence.hg38.vcf.gz"
 
 #Number of threads
-NT="1"
+NT="6"
