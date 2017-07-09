@@ -1,4 +1,4 @@
-<config.mk
+< config.mk
 
 results/%.ir.rtc.bam:E:	data/%.bam results/%.intervals coord.bed
 	set -x
