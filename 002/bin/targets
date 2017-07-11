@@ -4,5 +4,5 @@ find -L data/ \
         -name '*.bam'\
 | sed \
 	-e "s/data/results/g" \
-	-e "s/\.final\.ir\.rtc\./.recal2./"
+	-e "s/\.markdup\.ir\.rtc\./.recal2./"
 
