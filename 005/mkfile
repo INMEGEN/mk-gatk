@@ -73,4 +73,3 @@ results/%_indel.recal:        results/%_snp_recaled.vcf
 		-tranchesFile ${INNAME}_recaled_snp_indel.trash \
 		-o ${INNAME}_recaled_snp-indel.vcf \
 		-ts_filter_level 99.0 \
-
