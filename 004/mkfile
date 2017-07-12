@@ -4,7 +4,7 @@
 datos=`{find -L data/ -name '*.vcf' | sed "s/^/--variant /"}
 
 
-results/Llamado-conjunto_raw.vcf:E:        $datos coord.bed
+results/Llamado-conjunto_raw.vcf:        $datos coord.bed
         set -x
         java -jar $GATK \
                 -T GenotypeGVCFs \

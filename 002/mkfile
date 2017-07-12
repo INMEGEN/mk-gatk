@@ -4,12 +4,12 @@ results/%.recal-tab1:	data/%.markdup.ir.rtc.bam
 	set -x
 	java -jar $GATK \
 		-T BaseRecalibrator \
-        	-R $REF \
+		-R $REF \
 		-I "data/"$stem".markdup.ir.rtc.bam" \
-        	-knownSites $VARIANTS \
-        	-nct $NT \
-        	-o $target".build" \
-  	&& mv $target".build" $target 
+		-knownSites $VARIANTS \
+		-nct $NT \
+		-o $target".build" \
+	&& mv $target".build" $target 
 
 
 results/%.recal1.bam: data/%.markdup.ir.rtc.bam results/%.recal-tab1 
@@ -28,12 +28,12 @@ results/%.recal1.bam: data/%.markdup.ir.rtc.bam results/%.recal-tab1
 results/%.recal-tab2:        results/%.recal1.bam 
         set -x
         java -jar $GATK \
-        	-T BaseRecalibrator \
-        	-R $REF \
-        	-I "results/"$stem".recal1.bam" \
-        	-knownSites $VARIANTS \
-        	-nct $NT \
-        	-o $target".build" \
+		-T BaseRecalibrator \
+		-R $REF \
+		-I "results/"$stem".recal1.bam" \
+		-knownSites $VARIANTS \
+		-nct $NT \
+		-o $target".build" \
         && mv $target".build" $target
 
 

@@ -1,9 +1,6 @@
 <config.mk
 
-prueba1:VE:
-	./bin/targets | xargs mk
-
-results/%.vcf:E:	data/%.recal2.bam coord.bed
+results/%.vcf:	data/%.recal2.bam coord.bed
 	set -x
 	java -jar $GATK \
 		-T HaplotypeCaller \

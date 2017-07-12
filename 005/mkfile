@@ -1,12 +1,9 @@
 aconfig.mk
 
-prueba1:VE:
-	./bin/targets | xargs mk
-
 
 #Recalibrating SNP
 
-results/%_snp.recal:E:        data/%.vcf
+results/%_snp.recal:        data/%.vcf
         java -jar $GATK \
 		-T VariantRecalibrator \
 		-R $REF \
@@ -29,7 +26,7 @@ results/%_snp.recal:E:        data/%.vcf
 
 #Apply the recalibration in VCF file
 
-results/%_snp_recaled.vcf:E:       results/%_snp.recal results/%_snp.tranches data/%.vcf
+results/%_snp_recaled.vcf:       results/%_snp.recal results/%_snp.tranches data/%.vcf
         java -jar $GATK \
 		-T ApplyRecalibration \
 		-R $REF \
@@ -45,7 +42,7 @@ results/%_snp_recaled.vcf:E:       results/%_snp.recal results/%_snp.tranches da
 
 #Recalibrating INDEL
 
-results/%_indel.recal:E:        results/%_snp_recaled.vcf
+results/%_indel.recal:        results/%_snp_recaled.vcf
 	java -jar $GATK \
 		-T VariantRecalibrator \
 		-R $REF \
