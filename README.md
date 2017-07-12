@@ -1,4 +1,4 @@
-Pipeline for GATK short variant calling in the 100GMX project
+Pipeline for GATK short variant calling in the 100GMX project.
 
 	
 Folder structure:
