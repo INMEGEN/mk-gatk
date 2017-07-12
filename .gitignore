@@ -2,4 +2,4 @@
 *.swp
 */results
 */data
-*.sub
+*condor*
