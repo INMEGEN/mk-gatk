@@ -1,28 +1,23 @@
 <config.mk
 
-prueba1:VE:
-	./bin/targets | xargs mk
-
-results/%.recal-tab1:E:	data/%.final.ir.rtc.bam coord.bed
+results/%.recal-tab1:	data/%.markdup.ir.rtc.bam 
 	set -x
 	java -jar $GATK \
-	-T BaseRecalibrator \
-        -R $REF \
-        -L coord.bed \
-	-I "data/"$stem".final.ir.rtc.bam" \
-        -knownSites $VARIANTS \
-        -nct $NT \
-        -o $target".build" \
+		-T BaseRecalibrator \
+        	-R $REF \
+		-I "data/"$stem".markdup.ir.rtc.bam" \
+        	-knownSites $VARIANTS \
+        	-nct $NT \
+        	-o $target".build" \
   	&& mv $target".build" $target 
 
 
-results/%.recal1.bam:E: data/%.final.ir.rtc.bam results/%.recal-tab1 coord.bed
+results/%.recal1.bam: data/%.markdup.ir.rtc.bam results/%.recal-tab1 
 	set -x
 	java -jar $GATK \
 		-T PrintReads \
 		-R $REF \
-		-L coord.bed \
-		-I "data/"$stem".final.ir.rtc.bam" \
+		-I "data/"$stem".markdup.ir.rtc.bam" \
 		-o $target".build" \
                 -BQSR "results/"$stem".recal-tab1" \
 		-nct $NT \
@@ -30,26 +25,24 @@ results/%.recal1.bam:E: data/%.final.ir.rtc.bam results/%.recal-tab1 coord.bed
         && mv $target".build.bai" $target".bai"
 
 
-results/%.recal-tab2:E:        results/%.recal1.bam coord.bed
+results/%.recal-tab2:        results/%.recal1.bam 
         set -x
         java -jar $GATK \
-        -T BaseRecalibrator \
-        -R $REF \
-        -L coord.bed \
-        -I "results/"$stem".recal1.bam" \
-        -knownSites $VARIANTS \
-        -nct $NT \
-        -o $target".build" \
+        	-T BaseRecalibrator \
+        	-R $REF \
+        	-I "results/"$stem".recal1.bam" \
+        	-knownSites $VARIANTS \
+        	-nct $NT \
+        	-o $target".build" \
         && mv $target".build" $target
 
 
-results/%.recal2.bam:E: results/%.recal1.bam results/%.recal-tab2 coord.bed
+results/%.recal2.bam: results/%.recal1.bam results/%.recal-tab2 
         set -x
 	mkdir -p `dirname $target`
         java -jar $GATK \
                 -T PrintReads \
                 -R $REF \
-                -L coord.bed \
                 -I "results/"$stem".recal1.bam" \
                 -o $target".build" \
                 -nct $NT \
