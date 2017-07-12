@@ -5,7 +5,6 @@ results/%.vcf:	data/%.recal2.bam coord.bed
 	java -jar $GATK \
 		-T HaplotypeCaller \
 		-R $REF \
-		-L coord.bed \
 		-I "data/"$stem".recal2.bam" \
 		--minPruning 3 \
 		--emitRefConfidence GVCF \
