@@ -8,7 +8,8 @@ GATK="/usr/share/java/GenomeAnalysisTK3.7.jar"
 REF="/reference/ftp.broadinstitute.org/bundle/hg38/Homo_sapiens_assembly38.fasta"
 
 #Directorio con variantes de confianza
-VARIANTS="/reference/ftp.broadinstitute.org/bundle/hg38/1000G_phase1.snps.high_confidence.hg38.vcf.gz"
+INDELs="/reference/ftp.broadinstitute.org/bundle/hg38/Mills_and_1000G_gold_standard.indels.hg38.vcf.gz"
+dbSNP="/reference/ftp.broadinstitute.org/bundle/hg38/dbsnp_138.hg38.vcf.gz"
 
 #Number of threads
 NT="4"
