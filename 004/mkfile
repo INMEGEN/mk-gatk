@@ -1,4 +1,4 @@
-<config.mk
+< config.mk
 
 
 datos=`{find -L data/ -name '*.vcf' | sed "s/^/--variant /"}
