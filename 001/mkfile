@@ -1,6 +1,6 @@
 < ../config.mk
 
-results/%.ir.rtc.bam:	data/%.bam results/%.intervals 
+results/%.ir.rtc.bam:	data/%.bam results/%.intervals
 	set -x
 	java -jar $GATK \
 		-T IndelRealigner \
@@ -14,6 +14,7 @@ results/%.ir.rtc.bam:	data/%.bam results/%.intervals
 
 results/%.intervals: data/%.bam 
 	set -x
+	mkdir -p $(dirname $target)
 	java -jar $GATK \
 		-T RealignerTargetCreator \
 		-R $REF \
