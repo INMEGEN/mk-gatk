@@ -2,6 +2,7 @@
 
 results/Llamado-conjunto_raw.vcf:
         set -x
+        mkdir -p `dirname $target`
         datos=`{find -L data/ -name '*.vcf' | sed "s/^/--variant /"}
         java -jar $GATK \
                 -T GenotypeGVCFs \
