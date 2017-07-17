@@ -4,6 +4,7 @@
 #Recalibrating SNP
 
 results/%_snp.recal:        data/%.vcf
+	mkdir -p `dirname $target`
         java -jar $GATK \
 		-T VariantRecalibrator \
 		-R $REF \
