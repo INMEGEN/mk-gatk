@@ -1,7 +1,8 @@
-<config.mk
+< ../config.mk
 
 results/%.recal-tab1:	data/%.markdup.ir.rtc.bam 
 	set -x
+	mkdir -p `dirname $target`
 	java -jar $GATK \
 		-T BaseRecalibrator \
 		-R $REF \

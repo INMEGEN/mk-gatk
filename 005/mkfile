@@ -1,9 +1,10 @@
-aconfig.mk
+< ../config.mk
 
 
 #Recalibrating SNP
 
 results/%_snp.recal:        data/%.vcf
+	mkdir -p `dirname $target`
         java -jar $GATK \
 		-T VariantRecalibrator \
 		-R $REF \
@@ -13,10 +14,10 @@ results/%_snp.recal:        data/%.vcf
 		-tranchesFile "results/"$stem"_snp.tranches.build" \
 		-rscriptFile "results/"$stem"-recalibrate_SNP_plots.R.build" \
 		-nt $2 \
-		-resource:hapmap,known=false,training=true,truth=true,prior=15.0 $REF/hapmap_3.3.b37.vcf \
-		-resource:omni,known=false,training=true,truth=true,prior=12.0 $REF/1000G_omni2.5.b37.vcf \
-		-resource:1000G,known=true,training=true,truth=true,prior=10.0 $REF/Mills_and_1000G_gold_standard.indels.b37.vcf \
-		-resource:dbsnp,known=true,training=false,truth=false,prior=2.0 $REF/dbsnp_138.b37.vcf \
+		-resource:hapmap,known=false,training=true,truth=true,prior=15.0 $HAPMAP \
+		-resource:omni,known=false,training=true,truth=true,prior=12.0 $1000G_OMNI \
+		-resource:1000G,known=true,training=true,truth=true,prior=10.0 $INDELs \
+		-resource:dbsnp,known=true,training=false,truth=false,prior=2.0 $dbSNP \
 		-an DP -an QD -an FS -an SOR -an MQ \
                 -an MQRankSum -an ReadPosRankSum -an InbreedingCoeff \
 	        && mv $target".build" $target \
@@ -52,7 +53,7 @@ results/%_indel.recal:        results/%_snp_recaled.vcf
                 -tranchesFile "results/"$stem"_indel.tranches.build" \
                 -rscriptFile "results/"$stem"-recalibrate_INDEL_plots.R.build" \
 		-nt $2 \
-		-resource:mills,known=false,training=true,truth=true,prior=12.0 $REF/Mills_and_1000G_gold_standard.indels.b37.vcf \
+		-resource:mills,known=false,training=true,truth=true,prior=12.0 $INDELs \
 		-an DP \
 		-an QD \
 		-an FS \

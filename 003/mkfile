@@ -1,7 +1,8 @@
-<config.mk
+< ../config.mk
 
 results/%.vcf:	data/%.recal2.bam
 	set -x
+	mkdir -p `dirname $target`
 	java -jar $GATK \
 		-T HaplotypeCaller \
 		-R $REF \

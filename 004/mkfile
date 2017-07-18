@@ -1,16 +1,16 @@
-<config.mk
-
+< ../config.mk
 
 datos=`{find -L data/ -name '*.vcf' | sed "s/^/--variant /"}
 
-
-results/Llamado-conjunto_raw.vcf:        $datos
+results/Llamado-conjunto_raw.vcf:
         set -x
+        mkdir -p $(dirname $target)
         java -jar $GATK \
                 -T GenotypeGVCFs \
                 -R $REF \
-                --variant $datos \
+                $datos \
                 --disable_auto_index_creation_and_locking_when_reading_rods \
                 -nt $NT \
                 -o $target".build" \
         && mv $target".build" $target
+
