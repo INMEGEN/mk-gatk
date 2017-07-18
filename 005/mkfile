@@ -3,12 +3,12 @@
 
 #Recalibrating SNP
 
-results/%_snp.recal:        data/%.vcf
+results/%_snp.recal: data/%.vcf
 	mkdir -p `dirname $target`
         java -jar $GATK \
 		-T VariantRecalibrator \
 		-R $REF \
-		-input $INPUT \
+		-input $prereq \
 		-mode SNP \
 		-recalFile $target".build" \
 		-tranchesFile "results/"$stem"_snp.tranches.build" \
