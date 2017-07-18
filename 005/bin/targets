@@ -1,0 +1,9 @@
+#!/bin/bash
+
+find -L data/ \
+-type f \
+
+
+
+-name "*.vcf"
+
