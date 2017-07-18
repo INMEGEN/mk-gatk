@@ -1,6 +1,6 @@
 <config.mk
 
-results/%.vcf:	data/%.recal2.bam coord.bed
+results/%.vcf:	data/%.recal2.bam
 	set -x
 	java -jar $GATK \
 		-T HaplotypeCaller \
