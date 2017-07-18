@@ -12,5 +12,8 @@ results/Llamado-conjunto_raw.vcf:
                 --disable_auto_index_creation_and_locking_when_reading_rods \
                 -nt $NT \
                 -o $target".build" \
-        && mv $target".build" $target
+        && mv $target".build" $target \
+	&& mv $target.build.idx $target.idx
+
+
 

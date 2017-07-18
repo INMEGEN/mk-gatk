@@ -13,4 +13,5 @@ results/%.vcf:	data/%.recal2.bam
                 --variant_index_parameter 128000 \
                 -nct $NT \
 		-o $target".build" \
-	&& mv $target".build" $target
+	&& mv $target".build" $target \
+	&& mv $target.build.idx $target.ix
