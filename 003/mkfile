@@ -14,4 +14,4 @@ results/%.vcf:	data/%.recal2.bam
                 -nct $NT \
 		-o $target".build" \
 	&& mv $target".build" $target \
-	&& mv $target.build.idx $target.ix
+	&& mv $target.build.idx $target.idx
