@@ -1,6 +1,6 @@
 < ../config.mk
 
-results/%.ir.rtc.bam:	data/%.bam results/%.intervals
+results/%.ir.rtc.bam:	data/%.markdup.bam results/%.intervals
 	set -x
 	java -jar $GATK \
 		-T IndelRealigner \
