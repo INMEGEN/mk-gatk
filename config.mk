@@ -5,8 +5,8 @@ PATH=/castle/cfresno/.bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbi
 GATK="/usr/share/java/GenomeAnalysisTK3.7.jar"
 
 #Archivo de genoma de referencia
-##REF="/reference/ftp.broadinstitute.org/bundle/hg38/Homo_sapiens_assembly38.fasta" ##For whole-genome
-REF="/remote/reference/mitocondria/NCBI_NC_012920.1_Homo_sapiens_mitochondrion.fasta" ##For mitochondria
+REF="/reference/ftp.broadinstitute.org/bundle/hg38/Homo_sapiens_assembly38.fasta" ##For whole-genome
+##REF="/remote/reference/mitocondria/NCBI_NC_012920.1_Homo_sapiens_mitochondrion.fasta" ##For mitochondria
 
 #Archivos de variantes de confianza
 INDELs="/reference/ftp.broadinstitute.org/bundle/hg38/Mills_and_1000G_gold_standard.indels.hg38.vcf.gz"
