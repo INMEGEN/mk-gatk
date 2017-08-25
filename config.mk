@@ -2,7 +2,7 @@
 PATH=/castle/cfresno/.bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/lib/jvm/java-8-oracle/bin:/usr/lib/jvm/java-8-oracle/db/bin:/usr/lib/jvm/java-8-oracle/jre/bin:/usr/lib/plan9/bin:/usr/bin/
 
 #GATK directory
-GATK="/usr/share/java/GenomeAnalysisTK3.7.jar"
+GATK="/usr/share/java/GenomeAnalysisTK3.8.jar"
 
 #Archivo de genoma de referencia
 REF="/reference/ftp.broadinstitute.org/bundle/hg38/Homo_sapiens_assembly38.fasta" ##For whole-genome
@@ -20,4 +20,4 @@ OTG="/reference/ftp.broadinstitute.org/bundle/hg38/1000G_phase1.snps.high_confid
 ##OTG="/remote/reference/mitocondria/GATK_bundle_for_NC012920/ALL.chrMT.phase3_callmom.20130502.genotypes.SNVs.recode.vcf"
 
 #Number of threads
-NT="4"
+NT="32"
