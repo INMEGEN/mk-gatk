@@ -3,3 +3,11 @@
 */results
 */data
 *condor*
+004/log.out
+004/tmp
+002/.Rhistory
+002/.Rprofile
+002/.gitignore
+002/hs_err_pid522891.log
+002/packrat/
+003/test/
