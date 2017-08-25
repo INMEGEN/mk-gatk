@@ -4,4 +4,4 @@ find -L data/ \
         -name '*.recal2.bam'\
 | sed \
 	-e "s/data/results/g" \
-	-e "s/\.recal2\.bam/.vcf/"
+	-e "s/\.recal2\.bam/\.g\.vcf/"
