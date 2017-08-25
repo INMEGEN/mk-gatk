@@ -95,6 +95,10 @@ Folder structure:
 
          For more details see: https://software.broadinstitute.org/gatk/documentation/tooldocs/current/org_broadinstitute_gatk_tools_walkers_variantutils_GenotypeGVCFs.php
 
+	WARNING: In this step many temporary files are requiered so consider:
+		1. Change the JAVA tmp directory: export _JAVA_OPTIONS=-Djava.io.tmpdir=/100g/analysis/007a/004/tmp
+		2. Extend the limit of open files: ulimit -n 32768
+		 In order to obtain a successful run.
 
 ##	005:  Variant recalibration steps
 	    In this step, for each possible variant the quality (likelihood) for each variant is readjusted.
