@@ -2,10 +2,10 @@
 
 datos=`{find -L data/ -name '*.vcf' | sed "s/^/--variant /"}
 
-results/Llamado-conjunto_raw.vcf:
+results/Llamado-conjunto_raw.vcf: coord.bed
         set -x
         mkdir -p $(dirname $target)
-	echo $export _JAVA_OPTIONS
+	echo "$_JAVA_OPTIONS"
 	OPEN=`ulimit -n`
 	echo "ulimit -n:" $OPEN
         java -jar $GATK \
@@ -14,6 +14,7 @@ results/Llamado-conjunto_raw.vcf:
                 $datos \
                 --disable_auto_index_creation_and_locking_when_reading_rods \
                 -nt $NT \
+		-L coord.bed \
                 -o $target".build" >> log.out 2>&1  \
         && mv $target".build" $target \
 	&& mv $target.build.idx $target.idx
