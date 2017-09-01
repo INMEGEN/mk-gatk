@@ -131,4 +131,5 @@ Folder structure:
 
 		For more details see: http://gatkforums.broadinstitute.org/gatk/discussion/39/variant-quality-score-recalibration-vqsr
 
+##	005b:	Hard Filter
 	
