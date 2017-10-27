@@ -1,7 +1,7 @@
 #!/bin/sh
 #echo "results/%_snp_indel_recaled.vcf"
 find -L data/ \
-        -name '*.vcf.gz'\
+        -name '*.vcf'\
 | sed \
 	-e "s/data/results/g" \
-	-e "s/\.vcf.gz/_snp_indel_recaled\.vcf/"
+	-e "s/\.vcf/_snp_indel_recaled\.vcf/"

@@ -3,7 +3,7 @@
 
 #Recalibrating SNP
 
-results/%_snp.recal:	data/%.vcf.gz
+results/%_snp.recal:	data/%.vcf
         java -jar $GATK \
 		-T VariantRecalibrator \
 		-R $REF \
@@ -26,7 +26,7 @@ results/%_snp.recal:	data/%.vcf.gz
 
 #Apply the recalibration in VCF file
 
-results/%_snp_recaled.vcf:    results/%_snp.recal  results/%_snp.tranches  data/%.vcf.gz
+results/%_snp_recaled.vcf:    results/%_snp.recal  data/%.vcf
         java -jar $GATK \
 		-T ApplyRecalibration \
 		-R $REF \
@@ -65,7 +65,7 @@ results/%_indel.recal:        results/%_snp_recaled.vcf
                 && mv "results/"$stem"-recalibrate_INDEL_plots.R.build" "results/"$stem"-recalibrate_INDEL_plots.R"
 
 #Apply recalibration in INDELS
-results/%_snp_indel_recaled.vcf:       results/%_indel.recal results/%_indel.tranches results/%_snp_recaled.vcf
+results/%_snp_indel_recaled.vcf:       results/%_indel.recal results/%_snp_recaled.vcf
         java -jar $GATK \
 		-T ApplyRecalibration \
 		-R $REF \
@@ -74,6 +74,6 @@ results/%_snp_indel_recaled.vcf:       results/%_indel.recal results/%_indel.tra
 		-recalFile "results/"$stem"_indel.recal" \
 		-nt $NT \
 		-tranchesFile "results/"$stem"_indel.tranches" \
-		-o $target".build" \ 
+		-o $target".build" \
 		-ts_filter_level 99.0 \
 		&& mv $target".build" $target
