@@ -1,0 +1,21 @@
+< ../config.mk
+
+results/%.VQRS-FAIL.vcf: data/%.vcf
+	set -x
+	mkdir -p `dirname $target`
+	bcftools view -h $prereq > $target.build \
+	&& bcftools view -H $prereq | grep -wv "PASS" >> $target.build \
+	&& mv $target.build $target \
+	&& samtools index
+
+results/%.VQRS-PASS.vcf: data/%.vcf
+	set -x
+	mkdir -p `dirname $target`
+	java -jar $GATK \
+                -T SelectVariants \
+                -R $REF \
+		-V $prereq \
+		-o $target".build" \
+		--excludeFiltered \
+		-nt $NT \
+	&& mv $target.build $target
