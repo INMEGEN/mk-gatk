@@ -12,3 +12,4 @@
 002/packrat/
 003/test/
 *.sha256
+004/bin/removing_chromosome_from_vcf.sh
