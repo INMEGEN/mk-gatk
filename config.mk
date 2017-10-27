@@ -20,4 +20,4 @@ OTG="/reference/ftp.broadinstitute.org/bundle/hg38/1000G_phase1.snps.high_confid
 ##OTG="/remote/reference/mitocondria/GATK_bundle_for_NC012920/ALL.chrMT.phase3_callmom.20130502.genotypes.SNVs.recode.vcf"
 
 #Number of threads
-NT="32"
+NT="4"
