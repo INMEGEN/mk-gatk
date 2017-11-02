@@ -1,1 +1,7 @@
-echo "results/Llamado-conjunto_raw.vcf"
+#!/bin/bash
+find -L data/ \
+	-mindepth 1 \
+	-type d \
+| sed -r \
+	-e "s#^data#results#" \
+	-e "s#\$#/Llamado\-conjunto\_raw\.vcf#" 

@@ -100,6 +100,10 @@ Folder structure:
 		2. Extend the limit of open files: ulimit -n 32768
 		 In order to obtain a successful run.
 
+	Note: 
+		- data/95 all amerindians
+		- data/94 excluded subject SM-3MGPV due to incorrect FST calculation
+		- data/92 equal to data/94 plus 2 aditional subject removed (SM-3MG54 and SM-3MG59) due to missing label in concordance.
 ##	005:  Variant recalibration steps
 	    In this step, for each possible variant the quality (likelihood) for each variant is readjusted.
 	    This is important step to correct multiple testing bias. 
