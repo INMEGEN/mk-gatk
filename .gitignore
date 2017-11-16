@@ -13,5 +13,6 @@
 003/test/
 *.sha256
 004/bin/removing_chromosome_from_vcf.sh
+004/log/
 004/log.out.2017-08-28
 007a/

@@ -1,6 +1,6 @@
 < ../config.mk
 
-results/%.VQRS-FAIL.vcf: data/%.vcf
+results/%.VQSR-FAIL.vcf: data/%.vcf
 	set -x
 	mkdir -p `dirname $target`
 	bcftools view -h $prereq > $target.build \
@@ -8,7 +8,7 @@ results/%.VQRS-FAIL.vcf: data/%.vcf
 	&& mv $target.build $target \
 	&& samtools index
 
-results/%.VQRS-PASS.vcf: data/%.vcf
+results/%.VQSR-PASS.vcf: data/%.vcf
 	set -x
 	mkdir -p `dirname $target`
 	java -jar $GATK \

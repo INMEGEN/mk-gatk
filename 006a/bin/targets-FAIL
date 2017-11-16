@@ -4,4 +4,4 @@ find -L data/ \
 -type f \
 -name "*.vcf" \
 | sed -e "s#data/#results/#" \
--e "s#.vcf#.VQRS-FAIL.vcf#"
+-e "s#.vcf#.VQSR-FAIL.vcf#"

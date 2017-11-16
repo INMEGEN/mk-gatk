@@ -73,7 +73,7 @@ Folder structure:
 
 		For this MK:
 
-		targets/ 	BAM files
+		targets/	BAM files
 
 		results/	gVCFs files generated, those are not recalled
 
@@ -137,3 +137,6 @@ Folder structure:
 
 ##	005b:	Hard Filter
 	
+##	006:	Split VCF between PASS and FAIL VQSR filtered variants
+
+##	007a:	Compressing VCF files
