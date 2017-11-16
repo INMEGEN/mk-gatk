@@ -140,3 +140,4 @@ Folder structure:
 ##	006:	Split VCF between PASS and FAIL VQSR filtered variants
 
 ##	007a:	Compressing VCF files
+		NOT requested, but neccesary
