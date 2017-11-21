@@ -1,0 +1,7 @@
+#!/bin/bash
+
+find -L ../results/ \
+	-type f \
+	-name "*.vcf" \
+| sed -e 's#../results/#QC-results/#' \
+	-e 's#.vcf#.vcf.QC#'

@@ -1,0 +1,17 @@
+< ../config.mk
+
+results/%.g.vcf:	data/%.recal2.bam
+	set -x
+	mkdir -p `dirname $target`
+	java -jar $GATK \
+		-T HaplotypeCaller \
+		-R $REF \
+		-I "data/"$stem".recal2.bam" \
+		--minPruning 3 \
+		--emitRefConfidence GVCF \
+                --variant_index_type LINEAR \
+                --variant_index_parameter 128000 \
+                -nct $NT \
+		-o $target".build" \
+	&& mv $target".build" $target \
+	&& mv $target.build.idx $target.idx

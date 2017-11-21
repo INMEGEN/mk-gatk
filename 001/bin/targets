@@ -1,8 +1,0 @@
-#!/bin/sh
-#echo "results/SM-3MG3L.final.ir.rtc.bam"
-find -L data/ \
-        -name '*.markdup.bam' \
-| sed -r \
-        -e 's#^data/#results/#g' \
-	-e 's#.bam#.ir.rtc.bam#g'
-

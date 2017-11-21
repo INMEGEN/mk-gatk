@@ -1,0 +1,16 @@
+QC:V:
+	bin/targets | xargs mk
+
+QC-results/%.vcf.QC:V: QC-results/%.vcf.variants_by_filter.tsv
+	set -x
+	echo "QC reports generated at $prereq"
+
+QC-results/%.vcf.variants_by_filter.tsv: ../results/%.vcf
+	set -x
+	mkdir -p `dirname $target`
+	echo "Variant_category	Number_of_Variants" > $target.build
+	echo "PASS	$(bcftools view -H $prereq | cut -f7 | grep -c -x 'PASS')" >> $target.build
+	echo "NOT_PASS	$(bcftools view -H $prereq | cut -f7 | grep -v -c -x 'PASS')" >> $target.build \
+	&& Rscript --vanilla bin/Graphicator.R $target.build $target.plot.build \
+	&& mv $target.plot.build $target.plot.png \
+	&& mv $target.build $target
