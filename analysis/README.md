@@ -135,9 +135,8 @@ Folder structure:
 
 		For more details see: http://gatkforums.broadinstitute.org/gatk/discussion/39/variant-quality-score-recalibration-vqsr
 
-##	005b:	Hard Filter
-	
-##	006:	Split VCF between PASS and FAIL VQSR filtered variants
+### 005b: Hard Filtering
 
-##	007a:	Compressing VCF files
-		NOT requested, but neccesary
+	This module applies hard filters to a variant callset that is too small for VQSR or for which truth/training sets are not available. variants are filtered using parameters recommended by the Broad Institute best practices.
+
+	For more information  go to the following site: [https://gatkforums.broadinstitute.org/gatk/discussion/2806/howto-apply-hard-filters-to-a-call-set](https://gatkforums.broadinstitute.org/gatk/discussion/2806/howto-apply-hard-filters-to-a-call-set)

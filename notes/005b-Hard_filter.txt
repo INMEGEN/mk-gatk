@@ -1,0 +1,33 @@
+##################################
+##      pipeline mk-gatk        ##
+##      module 005b notes       ##
+##################################
+
+Module execution:
+        Module can be executed from analysis/001/, by any of the following commands:
+
+        1) `mk <SPECIFIC_TARGET>`; where SPECIFIC_TARGET is any line printed by `001/bin/targets`.
+
+        2) `bin/targets | xrags mk`; every posible target printed by 001/bin/targets will be generated in tandem.
+
+        3) `condor submit`; parallel generation of every posible target printed by 001/bin/targets. Needs HTCondor to run.
+
+Expected output:
+        TO-DO
+        EXAMPLE:
+        Intermediate files:
+        results/
+	├── SAMPLE.indel.vcf		##vcf with only indels
+	├── SAMPLE.indel.vcf.idx	##Index for vcf
+	├── SAMPLE.snp.vcf		##vcf with only SNV
+	└── SAMPLE.snp.vcf.idx		##Index for vcf
+
+	Requested output:
+        results/
+	├── SAMPLE.hard_filtered.vcf.gz		##vcf file only with variants passing hard filter
+	├── SAMPLE.hard_filtered.vcf.gz.tbi	##Index for vcf file
+	├── SAMPLE.filtered.vcf			##vcf file with all variants flagged by hard filtering (includes varianst passing and failing the filter)
+	├── SAMPLE.filtered.vcf.idx		##Index for vcf file
+
+Module description:
+	This module applies hard filters to a variant callset that is too small for VQSR or for which truth/training sets are not available. Variants are filtered using parameters recommended by the Broad Institute best practices.

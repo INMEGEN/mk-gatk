@@ -1,0 +1,41 @@
+##################################
+##      pipeline mk-gatk        ##
+##      module 002 notes        ##
+##################################
+
+Module execution:
+        Module can be executed from analysis/001/, by any of the following commands:
+
+        1) `mk <SPECIFIC_TARGET>`; where SPECIFIC_TARGET is any line printed by `001/bin/targets`.
+
+        2) `bin/targets | xrags mk`; every posible target printed by 001/bin/targets will be generated in tandem.
+
+        3) `condor submit`; parallel generation of every posible target printed by 001/bin/targets. Needs HTCondor to run.
+
+Expected output:
+        EXAMPLE:
+
+        Intermediate files:
+        results/
+	├── SAMPLE.recal2.bam		##Recalibrated bam file, from second recalibration
+	├── SAMPLE.recal2.bam.bai	##Index for recalibrated bam file
+
+        Requested output:
+        results/
+	├── SAMPLE.BQSR_plot.csv	##Recalibration comparison file
+	├── SAMPLE.BQSR_plot.pdf	##Recalibration comparison report
+	├── SAMPLE.recal-tab1		##Table from first recalibration round
+	├── SAMPLE.recal-tab2		##Table from second recalibration rouns
+
+Module description:
+	This module performs Base Quality Score Recalibration of bam files by applying machine learning to model errors produced by the machine-sequencers.
+	Its important because  technical error, leading to over- or under-estimated base quality scores in the data. Some of these errors are due to the physics or the chemistry of how the sequencing reaction works and some are probably due to manufacturing flaws in the equipment.
+
+	The base recalibration process involves two key steps: 
+	1) The program builds a model of covariation based on the data and a set 
+	of known variants (BaseRecalibrator).
+	2) Adjusts the base quality scores in the data based on the model (PrintReads).
+
+	The indel realigment step need a reference for variants:
+	The known variants are used to mask out bases at sites of real (expected) variation, to avoid discarding real variants as errors. 
+	Outside of the masked sites, every mismatch is counted as an error.

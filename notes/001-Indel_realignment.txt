@@ -1,0 +1,36 @@
+##################################
+##	pipeline mk-gatk	##
+##	module 001 notes	##
+##################################
+
+Module execution:
+	Module can be executed from analysis/001/, by any of the following commands:
+
+	1) `mk <SPECIFIC_TARGET>`; where SPECIFIC_TARGET is any line printed by `001/bin/targets`.
+
+	2) `bin/targets | xrags mk`; every posible target printed by 001/bin/targets will be generated in tandem.
+
+	3) `condor submit`; parallel generation of every posible target printed by 001/bin/targets. Needs HTCondor to run.
+
+Expected output:
+	EXAMPLE:
+
+	Intermediate files:
+	results/
+	├── SM-3MG3L_chr22.markdup.intervals
+
+	Requested output:
+	results/
+	├── SAMPLE.ir.rtc.bam		##Indel-realigned bam file
+	├── SAMPLE.ir.rtc.bam.bai	##Index for Indel-realigned bam file
+
+Module description:
+	This module takes an input BAM, the it locally realign reads such that the number of mismatching bases is minimized across all the reads. 
+	This step is important because BWA-like algorithms penalice more indels than mismatches producing bias generating a lot of mismatches where INDELs are supossed to be.
+
+	There are 2 steps to the realignment process:
+
+	1) Determining (small) suspicious intervals which are likely in need of realignment (RealignerTargetCreator tool).
+	2) Running the realigner over those intervals (IndelRealigner) using smith waterman algorithm.
+
+	The indel realigment step, can take a reference of INDEL positions in the 1000G-Project in order to detect sites that are more propense to be realigned.

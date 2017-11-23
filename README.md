@@ -2,11 +2,13 @@
 
 ### Abreviations:
 
+**GATK**: Genome Analysis Toolkit
+
 **SNVs**: Single Nucleotide Variants
 
-**VQSR**: Variant Quality Score Recalibration
+**BQSR**: Base Quality Score Recalibration
 
-**GATK**: Genome Analysis Toolkit
+**VQSR**: Variant Quality Score Recalibration
 
 ## About mk-gatk
 

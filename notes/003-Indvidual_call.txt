@@ -1,0 +1,25 @@
+##################################
+##      pipeline mk-gatk        ##
+##      module 003 notes        ##
+##################################
+
+Module execution:
+        Module can be executed from analysis/001/, by any of the following commands:
+
+        1) `mk <SPECIFIC_TARGET>`; where SPECIFIC_TARGET is any line printed by `001/bin/targets`.
+
+        2) `bin/targets | xrags mk`; every posible target printed by 001/bin/targets will be generated in tandem.
+
+        3) `condor submit`; parallel generation of every posible target printed by 001/bin/targets. Needs HTCondor to run.
+
+Expected output:
+        EXAMPLE:
+
+	Requested output:
+        results/
+	├── SAMPLE.g.vcf	##vcf file with whole genome information (including non-variant sites)
+	├── SAMPLE.g.vcf.idx	##Index for vcf file
+
+Module description:
+
+	This module usess the HaplotypeCaller algorithm of GATK for estimating SNPs and short INDELs likelihoods for every nucleotide in the genome.

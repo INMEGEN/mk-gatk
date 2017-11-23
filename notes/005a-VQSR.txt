@@ -1,0 +1,45 @@
+##################################
+##      pipeline mk-gatk        ##
+##      module 005a notes       ##
+##################################
+
+Module execution:
+        Module can be executed from analysis/001/, by any of the following commands:
+
+        1) `mk <SPECIFIC_TARGET>`; where SPECIFIC_TARGET is any line printed by `001/bin/targets`.
+
+        2) `bin/targets | xrags mk`; every posible target printed by 001/bin/targets will be generated in tandem.
+
+        3) `condor submit`; parallel generation of every posible target printed by 001/bin/targets. Needs HTCondor to run.
+
+Expected output:
+        EXAMPLE:
+
+        Intermediate files:
+        results/
+	├── Llamado-conjunto_raw_snp_recaled.vcf		##vcf file for recalibrated SNV
+	├── Llamado-conjunto_raw_indel_recaled.vcf		##vcf file for recalibrated indels
+	├── Llamado-conjunto_raw_snp.recal			##SNV recalibration file
+	├── Llamado-conjunto_raw_indel.recal			##Indel recalibration file
+
+	Requested output:
+        results/
+	├── Llamado-conjunto_raw_snp_indel_recaled.vcf		##vcf file with recalibrated variants
+	└── Llamado-conjunto_raw_snp_indel_recaled.vcf.idx	##Index for vcf file
+
+Module description:
+	This module performs VQSR by readjusting the variant quality (likelihood) for each variant in a vcf. This is an important step to correct multiple testing bias.
+
+	The approach taken by variant quality score recalibration (VQRS) is to develop a continuous covarying estimate of the relationship between SNP call annotations (QD, SB, HaplotypeScore, HRun, for example)  and the the probability that a SNP is a true genetic variant versus a sequencing or data processing artifact. This model is determined adaptively based on "true sites" provided as input (variant references).
+
+	The VQRS evaluates variants in a two step process:
+
+	1) VariantRecalibrator:
+	Create a Gaussian mixture model by looking at the annotations values over a high quality subset of the input call set and then evaluate all input variants. 
+	This step produces a recalibration file.
+
+	1) ApplyRecalibration:
+	Apply the model parameters to each variant in input VCF files producing a recalibrated VCF file in which each variant is annotated with its VQSLOD value. 
+	In addition, this step will filter the calls based on this new lod score by adding lines to the FILTER column for variants that don't meet the specified lod threshold. And marking with PASS those that pass threshold.
+
+	The module runs a first stage to recall SNPs, then it runs a second stage to recall INDELs.
