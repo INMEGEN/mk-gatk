@@ -36,15 +36,11 @@ IMPORTANT NOTE: samtools must be called via `samtools` command.
 
 Development and installation instructions can be found at: [https://github.com/samtools](https://github.com/samtools)
 
-More information can be found at: [https://samtools.github.io/bcftools/](https://samtools.github.io/bcftools/)
-
 **[picard-tools](http://broadinstitute.github.io/picard/)**
 
 IMPORTANT NOTE: Picard tools must be called via `picard-tools` command.
 
 Development and installation instructions can be found at: [https://github.com/broadinstitute/picard](https://github.com/broadinstitute/picard)
-
-More information can be found at: [http://broadinstitute.github.io/picard/](http://broadinstitute.github.io/picard/)
 
 **[vcf-validator](https://github.com/EBIvariation/vcf-validator)**
 
@@ -52,15 +48,11 @@ IMPORTANT NOTE: vcf-validator must be called via `vcf-validator` command.
 
 Development and installation instructions can be found at: [https://github.com/EBIvariation/vcf-validator](https://github.com/EBIvariation/vcf-validator)
 
-More information can be found at: [https://github.com/EBIvariation/vcf-validator](https://github.com/EBIvariation/vcf-validator)
-
 **[BCFtools](https://samtools.github.io/bcftools/)**
 
 IMPORTANT NOTE: bcftools must be called via `bcftools` command.
 
 development and installation instructions can be found at: [https://github.com/samtools](https://github.com/samtools)
-
-More information can be found at: [https://samtools.github.io/bcftools/](https://samtools.github.io/bcftools/)
 
 ### Input files
 
