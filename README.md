@@ -22,7 +22,7 @@ Using Indel Ralignment, Base Recalibration (of base call quality), Haplotype Cal
 
 **[GATK](https://software.broadinstitute.org/gatk/)**
 
-The Genome Analysis Toolkit is a structured programming framework designed to ease the development of efficient and robust analysis tools for next-generation DNA sequencers using the functional programming philosophy of MapReduce. The GATK provides a set of data access patterns that encompass the majority of analysis tool needs. Separating specific analysis calculations from common data management infrastructure enables the optimization of the GATK framework for correctness, stability, and CPU and memory efficiency and to enable distributed and shared memory parallelization. \[1\]
+The Genome Analysis Toolkit is a structured programming framework designed to ease the development of efficient and robust analysis tools for next-generation DNA sequencers using the functional programming philosophy of MapReduce. The GATK provides a set of data access patterns that encompass the majority of analysis tool needs. Separating specific analysis calculations from common data management infrastructure enables the optimization of the GATK framework for correctness, stability, and CPU and memory efficiency and to enable distributed and shared memory parallelization. \[[1](http://genome.cshlp.org/content/20/9/1297.short)\]
 
 IMPORTANT NOTE: path to GATK must be declared in mk-gatk/analysis/config.mk.
 
