@@ -181,7 +181,8 @@ NT=
 
 ## mk-gatk directory structure
 
-```
+````
+
 mk-gatk/			##Pipeline main directory.
 ├── analysis			##Directory for mk modules.
 │   ├── 001			##Module for Indel realigment
@@ -282,16 +283,17 @@ mk-gatk/			##Pipeline main directory.
 │   ├── sample2.bai	##Index for "another BAM file".
 │   ├── sampleN.bam	##More BAM files.
 │   └── sampleN.bai	##Indexes for more BAM files.
-├── notes/	##Notes about proper execution of modules.
-├── README.md
-└── test-materials
-    ├── bams
-    └── reference_vcf
+├── notes/		##Notes about proper execution of modules.
+├── README.md		##This document. General workflow description.
+├── reference		##Directory for storgae of references used by this pipeline.
+└── test-materials	##Directory for data required for running tests in the module.
+    ├── bams		##5 different bams from chr22.
+    └── reference_vcf	##A vcf file against which to test Specificity and Sensibility of Variant Calling.
 
 ```
 
 ### References
-[1] [Tobias Rausch, Thomas Zichner, Andreas Schlattl, Adrian M. Stuetz, Vladimir Benes, Jan O. Korbel. Delly: structural variant discovery by integrated paired-end and split-read analysis. Bioinformatics 2012 28: i333-i339.](https://academic.oup.com/bioinformatics/article/28/18/i333/245403/DELLY-structural-variant-discovery-by-integrated)
+[1] [McKenna, A., Hanna, M., Banks, E., Sivachenko, A., Cibulskis, K., Kernytsky, A., ... & DePristo, M. A. (2010). The Genome Analysis Toolkit: a MapReduce framework for analyzing next-generation DNA sequencing data. Genome research, 20(9), 1297-1303.](http://genome.cshlp.org/content/20/9/1297.short)
 
 ### Author Info
 Developed by [Israel Aguilar](https://www.linkedin.com/in/israel-aguilar-ba625949/) (iaguilaror@gmail.com) for [Winter Genomics](http://www.wintergenomics.com/), by request of [INMEGEN](http://www.inmegen.gob.mx/). 2017.
