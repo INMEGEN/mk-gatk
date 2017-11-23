@@ -140,7 +140,7 @@ NT=
 		this step important to distingh variants in samples that could have low sequencing-depth, 
 		taking into account the information in other input samples.
 
-	  	This tool will combine all spanning records (samples), produce correct genotype likelihoods, re-genotype the newly merged record.
+		This tool will combine all spanning records (samples), produce correct genotype likelihoods, re-genotype the newly merged record.
 
          For more details see: https://software.broadinstitute.org/gatk/documentation/tooldocs/current/org_broadinstitute_gatk_tools_walkers_variantutils_GenotypeGVCFs.php
 
@@ -148,7 +148,7 @@ NT=
 		1. Change the JAVA tmp directory: export _JAVA_OPTIONS=-Djava.io.tmpdir=/100g/analysis/007a/004/tmp
 		2. Extend the limit of open files: ulimit -n 32768
 
-### 005a ->  Variant recalibration steps
+### 005a ->  Variant recalibration (VQSR) steps
 		In this step, for each possible variant the quality (likelihood) for each variant is readjusted.
 		This is important step to correct multiple testing bias. 
 
@@ -181,8 +181,7 @@ NT=
 
 ## mk-gatk directory structure
 
-````
-
+```
 mk-gatk/			##Pipeline main directory.
 ├── analysis			##Directory for mk modules.
 │   ├── 001			##Module for Indel realigment
@@ -289,7 +288,6 @@ mk-gatk/			##Pipeline main directory.
 └── test-materials	##Directory for data required for running tests in the module.
     ├── bams		##5 different bams from chr22.
     └── reference_vcf	##A vcf file against which to test Specificity and Sensibility of Variant Calling.
-
 ```
 
 ### References
