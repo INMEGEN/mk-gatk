@@ -52,18 +52,21 @@ Development and installation instructions can be found at: [https://github.com/E
 
 IMPORTANT NOTE: bcftools must be called via `bcftools` command.
 
-development and installation instructions can be found at: [https://github.com/samtools](https://github.com/samtools)
+Development and installation instructions can be found at: [https://github.com/samtools](https://github.com/samtools)
 
 ### Input files
 
 mk-gatk requires:
-1) Multiple BAM files with marked duplicates, and .bai index. Sample files must located at mk-gatk/data/
-1) A common .fasta file for the reference genome, the same version used to generate the sample .bam files. Reference genome files must be located at mk-data/reference/
-1) A gold standart INDEL vcf reference file, that must be declared in mk-gatk/analysis/config.mk
-1) A dbSNP vcf reference file, that must be declared in mk-gatk/analysis/config.mk
-1) A HAPMAP vcf reference file, that must be declared in mk-gatk/analysis/config.mk
-1) An OMNI vcf reference file, that must be declared in mk-gatk/analysis/config.mk
-1) A one thousand genomes vcf reference file, that must be declared in mk-gatk/analysis/config.mk
+
+1) Multiple BAM files with marked duplicates, and .bai index. Sample files must be located at mk-gatk/data/
+1) A common .fasta file for the reference genome, the same version used to generate the sample .bam files. Reference genome file should be located at mk-data/reference/
+1) A gold standart INDEL vcf reference file, that should be located at mk-data/reference/
+1) A dbSNP vcf reference file, that should be located at mk-data/reference/
+1) A HAPMAP vcf reference file, that should be located at mk-data/reference/
+1) An OMNI vcf reference file, that should be located at mk-data/reference/
+1) A one thousand genomes project vcf reference file, that should be located at mk-data/reference/
+
+Regardles of file location, paths to requirements 2-7 MUST be declared at mk-gatk/analysis/config.mk
 
 ### Configuration file
 
