@@ -6,11 +6,11 @@
 Module execution:
         Module can be executed from analysis/001/, by any of the following commands:
 
-        1) `mk <SPECIFIC_TARGET>`; where SPECIFIC_TARGET is any line printed by `001/bin/targets`.
+        1) `mk <SPECIFIC_TARGET>`; where SPECIFIC_TARGET is any line printed by `004/bin/targets`.
 
-        2) `bin/targets | xrags mk`; every posible target printed by 001/bin/targets will be generated in tandem.
+        2) `bin/targets | xrags mk`; every posible target printed by 004/bin/targets will be generated in tandem.
 
-        3) `condor submit`; parallel generation of every posible target printed by 001/bin/targets. Needs HTCondor to run.
+        3) `condor submit`; parallel generation of every posible target printed by 004/bin/targets. Needs HTCondor to run.
 
 Expected output:
         EXAMPLE:
